@@ -8,18 +8,16 @@ int main(int ac, char* av[])
         return (1);
     }
     
-    t_data data;
-    init_data_at_zero(&data);
-    if (is_logged())
+    t_profile *prf = NULL;
+    init_data(&prf);
+    if (do_profile_exist())
     {
-        data.logged = 1;
-        init_data(&data);
-        print_home(&data);
+        get_line(prf->cli);  
     }
     else
     {
-        log_in(&data);
+        create_profile(prf);
     }
-    free_data(&data);
+    free_data(prf);
     return (0);
 }

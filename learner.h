@@ -6,32 +6,46 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
+#include <errno.h>
 
-typedef struct s_data {
-    unsigned int logged;
-    char* level;
-    char* name;
-} t_data;
+#define SEPARATOR ':'
 
-/*data.c / main.c */
-void free_data(t_data *data);
+enum ref_profile {
+    IS_LOGGED,
+    CURRENT_LEVEL
+};
 
-unsigned int is_logged(void);
-void log_in(t_data *data);
+typedef struct s_cli {
+    char* curr_line;
+    char  buffer;
+} t_cli;
 
-void init_data(t_data *data);
-void init_data_at_zero(t_data *data);
+typedef struct s_lines  {
+    int   ref;
+    char* key;
+    char* string_value;
+    char  char_value;
+    int   int_value;
+    size_t content_size;
+} t_lines;
 
-unsigned int retrieve_int_data(const char *key);
-char* retrieve_str_data(const char *key);
+typedef struct s_profile {
+    t_lines* lines;
+    size_t  nb_lines;
+    int     fd;
+    t_cli* cli;
+} t_profile;
 
-void write_data(t_data *data);
-void write_int_data(char n, char *key);
-void write_str_data(char *str, char *key);
+/* DATA */
+void init_data(t_profile **prf);
+void free_data(t_profile *prf);
+/* Check if its the first time this user login */
+bool do_profile_exist(void);
+/* Create profile.data and store value inside t_profile */
+void create_profile(t_profile *prf);
 
 /* terminal.c */
-void print_home(t_data *data);
-void get_name(t_data *data);
-void get_level(t_data *data);
+void get_line(t_cli *cli);
 
 #endif
