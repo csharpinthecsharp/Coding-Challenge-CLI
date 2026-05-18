@@ -1,24 +1,56 @@
 #include "learner.h"
 
-char* input_user(void)
+int input_user(t_cli **cli)
 {
     char buf;
-    char input[64];
+    char input[1024];
     size_t len = 0;
-    while (read(STDIN_FILENO, &buf, 1) == 1)
+    ssize_t r;
+
+    while (1)
     {
-        if (buf == '\n' || len >= sizeof(input) - 1)
+        r = read(STDIN_FILENO, &buf, 1);
+        if (ctrl_c)
+        {
+            ctrl_c = 0;
+            return (1);
+        }
+        // CTRL D.
+        if (buf == '\x04')
+        {
+            if (len == 0)
+                return (-1);
             break;
-        input[len++] = buf;        
+        }
+        if (r < 0)
+        {
+            if (errno == EINTR)
+                continue;
+            return (-1);
+        }
+        if (buf == '\n')
+            break;
+        if (len < sizeof(input) - 1)
+            input[len++] = buf;
     }
     input[len] = '\0';
-    return (strdup(input));
+    free((*cli)->curr_line);
+    (*cli)->curr_line = strdup(input);
+    return (0);
 }
 
-void get_line(t_cli *cli)
+
+int cli_loop(t_cli **cli)
 {
     system("clear");
-    fprintf(stdout, "$> ");
-    fflush(stdout);
-    cli->curr_line = input_user();
+    int res;
+    while (1)
+    {
+        fprintf(stdout, "$> ");
+        fflush(stdout);
+        res = input_user(cli);
+        if (res == -1)
+            return (-1);
+    }
+    return (0);
 }

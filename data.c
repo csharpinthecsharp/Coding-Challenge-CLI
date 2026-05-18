@@ -85,6 +85,8 @@ int init_data_lines(t_lines **lines)
 
 void free_data(t_profile *prf)
 {
+    restore_term();
+
     if (!prf)
         return;
 

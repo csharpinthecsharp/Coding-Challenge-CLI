@@ -1,5 +1,6 @@
 #ifndef LEARNER_HPP
 #define LEARNER_HPP
+#define _GNU_SOURCE
 
 #include <stdio.h>
 #include <unistd.h>
@@ -8,8 +9,12 @@
 #include <string.h>
 #include <stdbool.h>
 #include <errno.h>
+#include <signal.h>
+#include <termios.h>
 
 #define PROFILE_LINES 2
+
+extern volatile sig_atomic_t ctrl_c;
 
 enum ref_profile {
     CHAPTER,
@@ -46,6 +51,9 @@ void create_profile(t_profile **prf);
 /* Fill profile.data */
 void fill_profile(t_profile **prf, t_lines **lines);
 /* terminal.c */
-void get_line(t_cli *cli);
+int cli_loop(t_cli **cli);
+
+/* main.c */
+void restore_term(void);
 
 #endif
