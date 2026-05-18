@@ -9,7 +9,6 @@
 #include <stdbool.h>
 #include <errno.h>
 
-#define SEPARATOR ':'
 #define PROFILE_LINES 2
 
 enum ref_profile {
