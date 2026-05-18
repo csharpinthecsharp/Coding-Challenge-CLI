@@ -9,14 +9,23 @@ int main(int ac, char* av[])
     }
     
     t_profile *prf = NULL;
-    init_data(&prf);
+    if (init_data_profile(&prf) == -1)
+    {
+        free_data(prf);
+        return (1);
+    }
+    if (init_data_lines(&prf->lines) == -1)
+    {
+        free_data(prf);
+        return (1);
+    }
     if (do_profile_exist())
     {
         get_line(prf->cli);  
     }
     else
     {
-        create_profile(prf);
+        create_profile(&prf);
     }
     free_data(prf);
     return (0);
