@@ -24,6 +24,7 @@ enum ref_profile {
 typedef struct s_cli {
     char* curr_line;
     char  buffer;
+    char *reply;
 } t_cli;
 
 typedef struct s_lines  {
@@ -52,9 +53,10 @@ void create_profile(t_profile **prf);
 void fill_profile(t_profile **prf, t_lines **lines);
 /* terminal.c */
 int cli_loop(t_profile **prf);
+void exit_cli(t_profile *prf);
 
 /* main.c */
 /*commands*/
-int command_dispatcher( const char* cmd );
+int command_dispatcher( const char* cmd, t_cli **cli );
 
 #endif

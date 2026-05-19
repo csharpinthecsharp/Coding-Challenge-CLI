@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-int command_dispatcher( const char* cmd )
+int command_dispatcher( const char* cmd, t_cli **cli)
 {
     if (!cmd)
         return (1);
@@ -11,8 +11,8 @@ int command_dispatcher( const char* cmd )
     else if (strcmp(cmd, "exit") == 0)
         return (1);
     else if (strcmp(cmd, "help") == 0)
-        fprintf(stdout, "cmds list: [help, exit]\n");
+        (*cli)->reply = strdup("cmds list: [help, exit]\n");
     else
-        fprintf(stdout, "%s: command don't exist, type: help\n", cmd);
+        (*cli)->reply = strdup("no command found, type help for commands list\n");
     return (0);
 }

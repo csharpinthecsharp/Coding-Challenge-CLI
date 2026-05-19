@@ -60,6 +60,7 @@ int init_data_profile(t_profile **prf)
     (*prf)->fd = -1;
     (*prf)->cli->buffer = 0;
     (*prf)->cli->curr_line = NULL;
+    (*prf)->cli->reply = NULL;
     return (0);
 }
 
@@ -85,6 +86,7 @@ int init_data_lines(t_lines **lines)
 
 void free_data(t_profile *prf)
 {
+
     if (!prf)
         return;
 

@@ -23,8 +23,7 @@ int main(int ac, char* av[])
         create_profile(&prf);
     if (cli_loop(&prf) == 1)
     {
-        fprintf(stdout, "Exiting Learn_C CLI..\n");
-        free_data(prf);
+        exit_cli(prf);
         return (0);
     }
     free_data(prf);
