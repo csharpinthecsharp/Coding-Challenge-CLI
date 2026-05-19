@@ -1,4 +1,4 @@
-# CC - Coding Challenge CLI
+# CC - Coding Challenge CLI (IN PROGRESS..)
 
 A terminal-based coding challenge application written in C.
 
