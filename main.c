@@ -14,7 +14,7 @@ int main(int ac, char* av[])
         free_data(prf);
         return (1);
     }
-    if (init_data_lines(&prf->lines) == -1)
+    if (init_data_lines(&prf->line) == -1)
     {
         free_data(prf);
         return (1);
@@ -23,7 +23,7 @@ int main(int ac, char* av[])
         create_profile(&prf);
     if (cli_loop(&prf) == 1)
     {
-        exit_cli(prf);
+        t_exit(prf);
         return (0);
     }
     free_data(prf);

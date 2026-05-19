@@ -1,4 +1,4 @@
-#include "learner.h"
+#include "../learner.h"
 
 /* Check if its the first time this user login */
 bool do_profile_exist(void)
@@ -15,28 +15,28 @@ void create_profile(t_profile **prf)
         perror("creat");
         exit(1);
     }
-    fill_profile(prf, &(*prf)->lines);
+    fill_profile(prf, &(*prf)->line);
 }
 
 /* Fill profile.data */
-void fill_profile(t_profile **prf, t_lines **lines)
+void fill_profile(t_profile **prf, t_lines **line)
 {
     size_t key_size = 0;
-    (*lines)[CHAPTER].key = strdup("CHAPTER");
-    key_size = strlen((*lines)[CHAPTER].key);
-    write((*prf)->fd, (*lines)[CHAPTER].key, key_size);
+    (*line)[CHAPTER].key = strdup("CHAPTER");
+    key_size = strlen((*line)[CHAPTER].key);
+    write((*prf)->fd, (*line)[CHAPTER].key, key_size);
     write((*prf)->fd, ":", 1);
-    write((*prf)->fd, &(*lines)[CHAPTER].char_value, 1);
+    write((*prf)->fd, &(*line)[CHAPTER].char_value, 1);
     write((*prf)->fd, "\n", 1);
-    (*lines)[CHAPTER].content_size = key_size + 3;
+    (*line)[CHAPTER].content_size = key_size + 3;
 
     key_size = 0;
-    (*lines)[LEVEL].key = strdup("LEVEL");
-    key_size = strlen((*lines)[LEVEL].key);
-    write((*prf)->fd, (*lines)[LEVEL].key, key_size);
+    (*line)[LEVEL].key = strdup("LEVEL");
+    key_size = strlen((*line)[LEVEL].key);
+    write((*prf)->fd, (*line)[LEVEL].key, key_size);
     write((*prf)->fd, ":", 1);
-    write((*prf)->fd, &(*lines)[LEVEL].char_value, 1);
-    (*lines)[LEVEL].content_size = key_size + 2;
+    write((*prf)->fd, &(*line)[LEVEL].char_value, 1);
+    (*line)[LEVEL].content_size = key_size + 2;
 }
 
 
@@ -64,10 +64,10 @@ int init_data_profile(t_profile **prf)
     return (0);
 }
 
-int init_data_lines(t_lines **lines)
+int init_data_lines(t_lines **line)
 {
-    *lines = malloc(sizeof(t_lines) * (PROFILE_LINES + 1));
-    if (!*lines)
+    *line = malloc(sizeof(t_lines) * (PROFILE_LINES + 1));
+    if (!*line)
     {
         perror("malloc");
         return (-1);
@@ -75,11 +75,11 @@ int init_data_lines(t_lines **lines)
 
     for (size_t i = 0; i < (PROFILE_LINES + 1); i++)
     {
-        (*lines)[i].string_value = NULL;
-        (*lines)[i].int_value = 0;
-        (*lines)[i].char_value = (*lines)[i].int_value + '0';
-        (*lines)[i].content_size = 0;
-        (*lines)[i].key = NULL;
+        (*line)[i].string_value = NULL;
+        (*line)[i].int_value = 0;
+        (*line)[i].char_value = (*line)[i].int_value + '0';
+        (*line)[i].content_size = 0;
+        (*line)[i].key = NULL;
     }
     return (0);
 }
@@ -97,17 +97,19 @@ void free_data(t_profile *prf)
     {
         if (prf->cli->curr_line)
             free (prf->cli->curr_line);
+        if (prf->cli->reply)
+            free(prf->cli->reply);
         free(prf->cli);
     }
 
-    if (prf->lines)
+    if (prf->line)
     {
         for (size_t i = 0; i < (PROFILE_LINES + 1); i++)
         {
-            free(prf->lines[i].key);
-            free(prf->lines[i].string_value);
+            free(prf->line[i].key);
+            free(prf->line[i].string_value);
         }
-        free(prf->lines);
+        free(prf->line);
     }
 
     free(prf);
