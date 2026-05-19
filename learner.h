@@ -11,10 +11,10 @@
 #include <errno.h>
 #include <signal.h>
 #include <termios.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 #define PROFILE_LINES 2
-
-extern volatile sig_atomic_t ctrl_c;
 
 enum ref_profile {
     CHAPTER,
@@ -51,9 +51,10 @@ void create_profile(t_profile **prf);
 /* Fill profile.data */
 void fill_profile(t_profile **prf, t_lines **lines);
 /* terminal.c */
-int cli_loop(t_cli **cli);
+int cli_loop(t_profile **prf);
 
 /* main.c */
-void restore_term(void);
+/*commands*/
+int command_dispatcher( const char* cmd );
 
 #endif

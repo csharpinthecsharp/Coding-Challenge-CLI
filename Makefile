@@ -4,7 +4,8 @@ CFLAGS	= -g -Wall -Wextra -Werror
 
 SRCS	= main.c \
 		  data.c \
-		  terminal.c
+		  terminal.c \
+		  commands.c
 
 OBJS	= $(SRCS:.c=.o)
 all: $(NAME)
@@ -13,7 +14,7 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME):$(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) -lreadline $(OBJS)
 
 clean:
 	rm -f $(OBJS)
