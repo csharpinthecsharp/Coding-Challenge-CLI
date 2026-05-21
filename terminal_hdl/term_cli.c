@@ -32,14 +32,27 @@ void print_cli_reply(t_profile **prf)
     fflush(stdout);
 }
 
+// NEED TO RESIZE CLI PROMPT WHEN USER MOVE IT 
+/*You can monitor terminal size changes using:
+
+SIGWINCH
+ioctl(TIOCGWINSZ, ...)*/
+
 int cli_loop(t_profile **prf)
 {
     t_setup();
     while (1)
     {
         t_clear_back();
-        print_cli_prompt(prf);
-        print_cli_reply(prf);
+        if (!(*prf)->cli->ex_mode)
+        {
+            print_cli_prompt(prf);
+            print_cli_reply(prf);
+        }
+        else
+        {
+            // ask to continue or select a chapter/level
+        }
         (*prf)->cli->curr_line = readline("\033[1m>\033[0m ");
 
         if ((*prf)->cli->curr_line)

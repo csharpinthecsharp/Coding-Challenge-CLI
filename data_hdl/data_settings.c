@@ -61,6 +61,7 @@ int init_data_profile(t_profile **prf)
     (*prf)->cli->buffer = 0;
     (*prf)->cli->curr_line = NULL;
     (*prf)->cli->reply = NULL;
+    (*prf)->cli->ex_mode = false;
     return (0);
 }
 
@@ -82,6 +83,28 @@ int init_data_lines(t_lines **line)
         (*line)[i].key = NULL;
     }
     return (0);
+}
+
+void reload_data(t_profile *prf)
+{
+    (void)prf;
+    t_setup();
+    t_move_cursor(0, 0);
+    fprintf(stdout,
+    "%s⠀⠀⠀⠀⣠⣤⣶⣶⣶⣤⣄⡀⠀\n"
+    "⠀⠀⣴⣾⣿⣿⣿⣿⣿⣧⡀⠈⠢\n"
+    "⠀⣼⣿⣿⣿⣿⣿⣿⣿⡿⠁⠀⠀\n"
+    "⢰⡿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀\n"
+    "⠘⣽⡿⠿⠿⣿⣿⣿⣿⣿⣦⣤⡀\n"
+    "⠀⣟⠀⠀⠀⣸⣿⡏⠀⠀⠀⢹⠗\n"
+    "⠀⣿⣷⣶⣾⡿⠁⠙⣄⣀⣀⣠⡀\n"
+    "⠀⠙⠙⢿⡿⣷⣶⣤⣿⣿⡿⠿⠃\n"
+    "⠀⠀⠀⠺⡏⡏⡏⡏⡏⠉⠁⠀⠀\n"
+"⠀⠀⠀⠀⠀⠀⠁⠁⠀⠀⠀⠀⠀%s\n", RED, WHITE);
+    fprintf(stdout, "%sFILES ARE CORRUPTED, WHAT HAVE YOU DONE !!!!! ?????%s\n", RED, WHITE);
+    fprintf(stdout, "%sRESTORING ORIGINAL DATA FILES...%s\n", RED, WHITE);
+    sleep(3);
+    t_unsetup();
 }
 
 void free_data(t_profile *prf)

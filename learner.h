@@ -14,7 +14,10 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <term.h>
+#include <dirent.h>
 
+#define RED "\033[31m"
+#define WHITE "\033[0m"
 #define PROFILE_LINES 2
 
 enum ref_profile {
@@ -26,6 +29,7 @@ typedef struct s_cli {
     char* curr_line;
     char  buffer;
     char *reply;
+    bool  ex_mode;
 } t_cli;
 
 typedef struct s_lines  {
@@ -46,6 +50,7 @@ typedef struct s_profile {
 int init_data_profile(t_profile **prf);
 int init_data_lines(t_lines **line);
 void free_data(t_profile *prf);
+void reload_data(t_profile *prf);
 /* Check if its the first time this user login */
 bool do_profile_exist(void);
 /* Create profile.data and store value inside t_profile */
@@ -65,4 +70,9 @@ void t_clear_back();
 int t_limit_inp(int count, int c);
 void t_move_cursor(int r, int c);
 void t_exit(t_profile *prf);
+int t_limit_to_enter(int count, int c);
+
+
+bool check_current_level(t_lines *l);
+
 #endif

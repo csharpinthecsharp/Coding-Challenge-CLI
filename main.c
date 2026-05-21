@@ -19,6 +19,8 @@ int main(int ac, char* av[])
         free_data(prf);
         return (1);
     }
+    if (!check_current_level(prf->line))
+        reload_data(prf); // ACTUALLY RELOAD ALL DATA
     if (!do_profile_exist())
         create_profile(&prf);
     if (cli_loop(&prf) == 1)

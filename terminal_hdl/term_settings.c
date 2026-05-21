@@ -8,6 +8,14 @@ int t_limit_inp(int count, int c)
     return rl_insert_text((char[]){c, 0});
 }
 
+int t_limit_to_enter(int count, int c)
+{
+    (void)count;
+    if (rl_end >= 1)
+        return (0);
+    return rl_insert_text((char[]){c, 0});
+}
+
 void t_setup()
 {
     setupterm(NULL, fileno(stdout), NULL);

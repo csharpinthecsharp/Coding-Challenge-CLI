@@ -11,7 +11,9 @@ int command_dispatcher( const char* cmd, t_cli **cli)
     else if (strcmp(cmd, "exit") == 0)
         return (1);
     else if (strcmp(cmd, "help") == 0)
-        (*cli)->reply = strdup("cmds list: [help, exit]\n");
+        (*cli)->reply = strdup("cmds list: [help, exit, go]\n");
+    else if (strcmp(cmd, "go") == 0)
+        (*cli)->ex_mode = true;
     else
         (*cli)->reply = strdup("no command found, type help for commands list\n");
     return (0);
