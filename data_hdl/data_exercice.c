@@ -33,9 +33,13 @@ bool check_current_level(t_lines *l)
 {
     char *chapter_dir = get_chapter_data(l[CHAPTER].int_value);
     if (!chapter_dir)
+    {
+        fprintf(stdout, "Error: missing chapter %u\n", l[CHAPTER].int_value);
         return (false);
+    }
     if (!get_level_data(l[LEVEL].int_value, l[CHAPTER].int_value))
     {
+        fprintf(stdout, "Error: missing level %u at chapter %u\n", l[LEVEL].int_value, l[CHAPTER].int_value);
         free(chapter_dir);
         return (false);
     }

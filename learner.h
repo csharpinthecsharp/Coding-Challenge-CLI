@@ -50,7 +50,6 @@ typedef struct s_profile {
 int init_data_profile(t_profile **prf);
 int init_data_lines(t_lines **line);
 void free_data(t_profile *prf);
-void reload_data(t_profile *prf);
 /* Check if its the first time this user login */
 bool do_profile_exist(void);
 /* Create profile.data and store value inside t_profile */
