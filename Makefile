@@ -1,28 +1,33 @@
-NAME	= c_learner
-CC		= clang
-CFLAGS	= -g -Wall -Wextra -Werror
+NAME	= learn
+CPP	= c++
+CFLAGS	= -std=c++98 -g -Wall -Wextra -Werror
 
-SRCS	= main.c \
-		  data_hdl/data_settings.c \
-		  data_hdl/data_exercice.c \
-		  commands.c \
-		  terminal_hdl/term_cli.c \
-		  terminal_hdl/term_settings.c \
+SRCS	= main.cpp \
+		  Profile.cpp \
 
-OBJS	= $(SRCS:.c=.o)
+OBJS	= $(SRCS:.cpp=.o)
+
+GREEN = \033[0;32m
+BOLD = \033[1m
+RESET = \033[0m
+
 all: $(NAME)
+	@echo ""
+	@echo "$(GREEN)$(BOLD) ==== ./learn to run ====$(RESET)"
+	@echo ""
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.cpp
+	$(CPP) $(CFLAGS) -c $< -o $@
 
-$(NAME):$(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) -lreadline -ltinfo $(OBJS)
+$(NAME): $(OBJS)
+	$(CPP) $(CFLAGS) -o $(NAME) $(OBJS)
 
 clean:
 	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
+	make clean
 
 re: fclean all
 
