@@ -89,7 +89,7 @@ void Profile::loadChapters()
 Chapter& Profile::getChaptersObjects( int n ) {
     for (std::vector<Chapter>::iterator it(_chapters.begin()); it != _chapters.end(); ++it) {
         if (it->getIntChapter() == n)
-            return (this->_chapters[n]);
+            return (*it);
     }
     std::cerr << "Chapter " << this->getChapter() << " in your profile.dt doesn't exist" << std::endl;
     exit(1);

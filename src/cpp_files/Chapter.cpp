@@ -31,7 +31,7 @@ void Chapter::loadLevels()
 Level& Chapter::getFromChaptersLevelsObjects( int n ) {
     for (std::vector<Level>::iterator it(_levels.begin()); it != _levels.end(); ++it) {
         if (it->getIntLevel() == n)
-            return (this->_levels[n]);
+            return (*it);
     }
     std::cerr << "Level " << n << " in Chapter " << _chapter << " in your profile.dt doesn't exist" << std::endl;
     exit(1);

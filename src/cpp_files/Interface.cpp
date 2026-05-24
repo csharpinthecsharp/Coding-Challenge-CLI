@@ -16,6 +16,8 @@ void Interface::loopExercice( Profile& profile ) {
     std::cout << "Commands: exit, continue, select" << std::endl;
     std::string line;
     std::getline(std::cin, line);
+    if (std::cin.eof())
+        exit(1);
     commandDispatcher(line, profile);
 }
 

@@ -3,5 +3,5 @@ Subject:Recreate the putchar function, you will print a character on the standar
 Allowed_functions:write
 Files_to_turn_in:cc_putchar.c
 Prototype:int putchar(int c);
-Hints:$>man putchar
+Hints:$> man putchar
 Examples:$> a, $> b, $> c
