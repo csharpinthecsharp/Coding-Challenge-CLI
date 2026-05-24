@@ -11,5 +11,6 @@ int main(int ac, char *av[])
     Profile profile;
     // GET DATA/PROFILE.DT VALUE OR CREATE ONE
     profile.retrieveProfileData();
+    profile.loadChapters();
     return (0);
 }

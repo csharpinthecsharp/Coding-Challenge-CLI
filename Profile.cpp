@@ -65,5 +65,22 @@ void Profile::retrieveProfileData() {
 
 void Profile::loadChapters()
 {
-
+    size_t count = 0;
+    for (size_t i(1); i < 10; i++) {
+            std::stringstream ss;
+            ss << "data/chapter_" << i;
+            std::string path = ss.str();
+            std::fstream file(path.c_str(), std::fstream::in);
+        if (file.good())
+        {
+            Chapter newChap(i);
+            _chapters.push_back(newChap);
+            count++;
+        }
+    }
+    if (!count) {
+        std::cout << "Error: No chapters found in data" << std::endl;
+        exit(1);
+    }
+    std::cout << "Found: " << count <<  " Chapter" << std::endl; 
 }

@@ -1,7 +1,8 @@
 #ifndef LEVEL_HPP
 #define LEVEL_HPP 
 
-#include "Profile.hpp"
+#include <string>
+#include <iostream>
 
 #define N_ELEMENTS 6
 

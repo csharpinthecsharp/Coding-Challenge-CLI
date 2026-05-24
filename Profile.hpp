@@ -7,13 +7,15 @@
 #include <fstream>
 #include <string>
 #include <cstdlib>
+#include <sstream>
+#include <vector>
 
 class Profile {
     private:
         unsigned int _level;
         unsigned int _chapter;
 
-        Chapter* chapters;
+        std::vector<Chapter> _chapters;
     public:
         Profile();
         ~Profile();
