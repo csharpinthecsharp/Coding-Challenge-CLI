@@ -9,4 +9,7 @@ int main(int ac, char *av[])
         return (1);
     }
     Profile profile;
+    // GET DATA/PROFILE.DT VALUE OR CREATE ONE
+    profile.retrieveProfileData();
+    return (0);
 }

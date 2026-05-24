@@ -4,6 +4,8 @@ CFLAGS	= -std=c++98 -g -Wall -Wextra -Werror
 
 SRCS	= main.cpp \
 		  Profile.cpp \
+		  Level.cpp \
+		  Chapter.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 

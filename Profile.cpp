@@ -2,9 +2,7 @@
 
 Profile::Profile()
 : _level(1),
-_chapter(1) {
-    retrieveProfileData();
-}
+_chapter(1) { }
 Profile::~Profile() { }
 
 void Profile::setLevel( unsigned int n ) {
@@ -13,10 +11,10 @@ void Profile::setLevel( unsigned int n ) {
 void Profile::setChapter( unsigned int n) {
     this->_chapter = n;
 }
-unsigned int Profile::getLevel() {
+unsigned int Profile::getLevel() const {
     return (this->_level);
 }
-unsigned int Profile::getChapter() {
+unsigned int Profile::getChapter() const {
     return (this->_chapter);
 }
 
@@ -63,4 +61,9 @@ void Profile::retrieveProfileData() {
     }
     std::cerr << "Error: Smth went while reading in profile.data" << std::endl;
     exit(1);
+}
+
+void Profile::loadChapters()
+{
+
 }
