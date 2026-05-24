@@ -1,6 +1,28 @@
 #include "Chapter.hpp"
 
 Chapter::Chapter( int chapter ) : _chapter(chapter) {
-    std::cout << "im alive: " << chapter << std::endl;
 }
 Chapter::~Chapter() {}
+
+void Chapter::loadLevels()
+{
+    size_t count = 0;
+    for (size_t i(1); i < 10; i++) {
+            std::stringstream ss;
+            ss << "data/chapter_" << _chapter << "/level_" << i << ".dt";
+            std::string path = ss.str();
+            std::fstream file(path.c_str(), std::fstream::in);
+        if (file.good())
+        {
+            Level newLevel(i);
+            newLevel.loadDataFile(file);
+            _levels.push_back(newLevel);
+            count++;
+        }
+    }
+    if (!count) {
+        std::cout << "Error: No levels found in data (chapter " << _chapter << ")" << std::endl;
+        exit(1);
+    }
+    std::cout << "Found: " << count <<  " Level in chapter " << _chapter << std::endl;
+}

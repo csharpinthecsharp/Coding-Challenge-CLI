@@ -6,9 +6,11 @@
 class Chapter {
     private:
         int _chapter;
-        Level* _levels;
+        std::vector<Level> _levels;
     public:
         Chapter( int chapter );
         ~Chapter();
-};
+        
+        void loadLevels();
+    };
 #endif

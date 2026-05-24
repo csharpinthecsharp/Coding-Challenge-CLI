@@ -74,6 +74,7 @@ void Profile::loadChapters()
         if (file.good())
         {
             Chapter newChap(i);
+            newChap.loadLevels();
             _chapters.push_back(newChap);
             count++;
         }
