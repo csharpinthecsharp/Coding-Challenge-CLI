@@ -1,4 +1,4 @@
-#include "Profile.hpp"
+#include "../hpp_files/Profile.hpp"
 
 Profile::Profile()
 : _level(1),
@@ -84,4 +84,18 @@ void Profile::loadChapters()
         exit(1);
     }
     std::cout << "Found: " << count <<  " Chapter" << std::endl; 
+}
+
+Chapter& Profile::getChaptersObjects( int n ) {
+    for (std::vector<Chapter>::iterator it(_chapters.begin()); it != _chapters.end(); ++it) {
+        if (it->getIntChapter() == n)
+            return (this->_chapters[n]);
+    }
+    std::cerr << "Chapter " << this->getChapter() << " in your profile.dt doesn't exist" << std::endl;
+    exit(1);
+}
+
+Level& Profile::getLevelsObjects( size_t n_l, size_t n_c ) {
+    Chapter& chapter = this->getChaptersObjects(n_c);
+    return (chapter.getFromChaptersLevelsObjects(n_l));
 }

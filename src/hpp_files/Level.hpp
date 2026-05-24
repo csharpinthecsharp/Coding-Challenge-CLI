@@ -42,6 +42,11 @@ class Level {
         std::string getHints() const;
         std::string getExample() const;
 
+        int getIntLevel() const;
+        std::vector<std::string>& getVector();
+
         void loadDataFile( std::fstream &fs );
 };
+
+std::ostream& operator<<( std::ostream& os, const Level& level );
 #endif

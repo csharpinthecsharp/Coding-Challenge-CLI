@@ -12,5 +12,7 @@ class Chapter {
         ~Chapter();
         
         void loadLevels();
+        int getIntChapter() const;
+        Level& getFromChaptersLevelsObjects( int n );
     };
 #endif

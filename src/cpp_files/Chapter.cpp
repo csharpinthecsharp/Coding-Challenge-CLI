@@ -1,4 +1,4 @@
-#include "Chapter.hpp"
+#include "../hpp_files/Chapter.hpp"
 
 Chapter::Chapter( int chapter ) : _chapter(chapter) {
 }
@@ -25,4 +25,19 @@ void Chapter::loadLevels()
         exit(1);
     }
     std::cout << "Found: " << count <<  " Level in chapter " << _chapter << std::endl;
+}
+
+
+Level& Chapter::getFromChaptersLevelsObjects( int n ) {
+    for (std::vector<Level>::iterator it(_levels.begin()); it != _levels.end(); ++it) {
+        if (it->getIntLevel() == n)
+            return (this->_levels[n]);
+    }
+    std::cerr << "Level " << n << " in Chapter " << _chapter << " in your profile.dt doesn't exist" << std::endl;
+    exit(1);
+}
+
+
+int Chapter::getIntChapter() const {
+    return (this->_chapter);
 }

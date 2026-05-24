@@ -2,10 +2,11 @@ NAME	= learn
 CPP	= c++
 CFLAGS	= -std=c++98 -g -Wall -Wextra -Werror
 
-SRCS	= main.cpp \
-		  Profile.cpp \
-		  Level.cpp \
-		  Chapter.cpp
+SRCS	= src/main.cpp \
+		  src/cpp_files/Profile.cpp \
+		  src/cpp_files/Level.cpp \
+		  src/cpp_files/Chapter.cpp \
+		  src/cpp_files/Interface.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 

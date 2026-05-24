@@ -25,6 +25,9 @@ class Profile {
         unsigned int getLevel() const;
         unsigned int getChapter() const;
 
+        Chapter& getChaptersObjects( int n );
+        Level& getLevelsObjects( size_t n_l, size_t n_c );
+
         void retrieveProfileData();
         void loadChapters();
 };

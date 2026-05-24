@@ -1,4 +1,4 @@
-#include "Profile.hpp"
+#include "hpp_files/Interface.hpp"
 
 int main(int ac, char *av[])
 {
@@ -12,5 +12,9 @@ int main(int ac, char *av[])
     // GET DATA/PROFILE.DT VALUE OR CREATE ONE
     profile.retrieveProfileData();
     profile.loadChapters();
+
+    Interface interface;
+    while (interface.isRunning())
+        interface.loopExercice(profile);
     return (0);
 }

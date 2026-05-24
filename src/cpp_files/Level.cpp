@@ -1,4 +1,4 @@
-#include "Level.hpp"
+#include "../hpp_files/Level.hpp"
 
 Level::Level( int level ) : 
 _level(level), 
@@ -81,4 +81,24 @@ std::string Level::getHints() const {
 }
 std::string Level::getExample() const {
     return this->_description.at(6);
+}
+
+int Level::getIntLevel() const {
+    return (this->_level);
+}
+
+std::vector<std::string>& Level::getVector() {
+    return (this->_description);
+}
+
+
+std::ostream& operator<<( std::ostream& os, const Level& level ) {
+    os << level.getTitle() << std::endl;
+    os << level.getSubject() << std::endl;
+    os << level.getAllowedFunctions() << std::endl;
+    os << level.getFileToTurnIn() << std::endl;
+    os << level.getPrototype() << std::endl;
+    os << level.getHints() << std::endl;
+    os << level.getExample();
+    return (os);
 }
