@@ -23,7 +23,7 @@ all: $(NAME)
 	$(CPP) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(CPP) $(CFLAGS) -o $(NAME) $(OBJS)
+	$(CPP) $(CFLAGS) $(OBJS) -o $(NAME) -lncurses -ltinfo
 
 clean:
 	rm -f $(OBJS)

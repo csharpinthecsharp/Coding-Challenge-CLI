@@ -14,6 +14,7 @@ int main(int ac, char *av[])
     profile.loadChapters();
 
     Interface interface;
+    interface.moveTerminalCursor(0,0);
     while (interface.isRunning())
         interface.loopExercice(profile);
     return (0);
