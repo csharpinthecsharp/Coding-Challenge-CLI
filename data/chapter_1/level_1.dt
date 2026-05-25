@@ -5,3 +5,4 @@ Files_to_turn_in:cc_putchar.c
 Prototype:int putchar(int c);
 Hints:$> man putchar
 Examples:$> a, $> b, $> c
+Code: int putchar(int c) { write(STDOUT_FILENO, &c, 1); return(0); }

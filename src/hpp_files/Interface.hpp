@@ -6,6 +6,7 @@
 class Interface {
     private:
         bool _run;
+        bool _in_exo;
     public:
         Interface();
         ~Interface();
